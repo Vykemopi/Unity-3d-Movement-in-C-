@@ -1,0 +1,21 @@
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public float moveSpeed = 5f; // Speed of movement
+    public float rotationSpeed = 100f; // Speed of rotation
+
+    void Update()
+    {
+        // Movement
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        
+        Vector3 moveDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.Self);
+
+        // Rotation
+        float mouseX = Input.GetAxis("Mouse X");
+        transform.Rotate(Vector3.up * mouseX * rotationSpeed * Time.deltaTime);
+    }
+}
